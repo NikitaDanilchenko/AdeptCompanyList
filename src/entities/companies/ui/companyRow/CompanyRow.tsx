@@ -1,0 +1,55 @@
+import { useAppDispatch, useAppSelector } from "@/app/AppStore";
+import React, { useCallback } from "react";
+import styles from './styles.module.css'
+import { editCompany, toggleSelect } from "@/entities/companies/model/companiesSlice";
+import { EditableSpan } from "@/shared/ui/editableSpan/EditableSpan";
+import { Checkbox } from "@/shared/ui/checkbox/Checkbox";
+
+export type CompanyRowProps = {
+    company: {
+        id: string
+        isSelected: boolean
+        name: string
+        address: string
+    }
+}
+
+export const CompanyRow = React.memo(({ company }: CompanyRowProps) => {
+    const dispatch = useAppDispatch();
+    const currentCompany = useAppSelector(state =>
+        state.companiesReducer.companies.find(comp =>
+            comp.id === company.id
+        )
+    )
+    const handleToggleSelect = useCallback(() => {
+        dispatch(toggleSelect(company.id))
+    }, [dispatch, company.id])
+
+    const handleEditCompany = useCallback((newValues: { name?: string, address?: string }) => {
+        dispatch(editCompany({ id: company.id, name: newValues.name ?? company.name, address: newValues.address ?? company.address }))
+    }, [dispatch, company])
+
+    if (!currentCompany) return null
+    return (
+        <div className={currentCompany.isSelected ? styles.selected : styles.row}>
+            <div className={styles.cell}>
+                <Checkbox
+                    isChecked={currentCompany.isSelected}
+                    onChange={handleToggleSelect}
+                />
+            </div>
+            <div className={styles.cell}>
+                <EditableSpan
+                    title={currentCompany.name}
+                    onChange={(newName) => handleEditCompany({ name: newName })}
+                />
+            </div>
+            <div className={styles.cell}>
+                <EditableSpan
+                    title={currentCompany.address}
+                    onChange={(newAddress) => handleEditCompany({ address: newAddress })}
+                />
+            </div>
+        </div>
+    );
+})

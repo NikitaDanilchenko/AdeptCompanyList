@@ -1,0 +1,19 @@
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.controls_checkboxAll {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: rgb(0, 169, 0);
+}
+
+.controls_button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}

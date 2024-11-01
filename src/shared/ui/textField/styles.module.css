@@ -1,0 +1,13 @@
+.textFieldWrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: max-content;
+}
+
+.input {
+    font-size: 25px;
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+  }  

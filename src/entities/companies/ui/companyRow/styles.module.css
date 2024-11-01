@@ -1,0 +1,23 @@
+.row, .selected {
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr;
+    font-size: 25px;
+    text-align: center;
+}
+
+.row {
+    background-color: #e0e0e0;
+}
+
+.selected {
+    background-color: rgba(132, 255, 159, 0.721);
+}
+
+.cell {
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

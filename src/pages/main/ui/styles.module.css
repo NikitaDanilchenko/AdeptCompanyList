@@ -1,0 +1,18 @@
+.container {
+    width: 95%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "header"
+        "controls"
+        "table";
+    gap: 16px;
+}
+
+.header {
+    grid-area: header;
+    justify-self: center;
+}
+
