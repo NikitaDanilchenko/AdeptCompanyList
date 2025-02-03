@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/app/AppStore";
-import React, { useCallback } from "react";
+import React from "react";
 import styles from './styles.module.css'
 import { editCompany, toggleSelect } from "@/entities/companies/model/companiesSlice";
 import { EditableSpan } from "@/shared/ui/editableSpan/EditableSpan";
@@ -21,13 +21,14 @@ export const CompanyRow = React.memo(({ company }: CompanyRowProps) => {
             comp.id === company.id
         )
     )
-    const handleToggleSelect = useCallback(() => {
-        dispatch(toggleSelect(company.id))
-    }, [dispatch, company.id])
 
-    const handleEditCompany = useCallback((newValues: { name?: string, address?: string }) => {
+    const handleToggleSelect = () => {
+        dispatch(toggleSelect(company.id))
+    }
+    
+    const handleEditCompany = (newValues: { name?: string, address?: string }) => {
         dispatch(editCompany({ id: company.id, name: newValues.name ?? company.name, address: newValues.address ?? company.address }))
-    }, [dispatch, company])
+    }
 
     if (!currentCompany) return null
     return (

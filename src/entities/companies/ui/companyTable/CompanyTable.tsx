@@ -8,6 +8,7 @@ export const CompanyTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const companiesPerPage = 15;
 
+   
     const visibleCompanies = useMemo(() => {
         const startIndex = 0;
         const endIndex = currentPage * companiesPerPage;
